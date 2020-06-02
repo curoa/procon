@@ -1,0 +1,9 @@
+^*
+*.swp
+log
+
+note
+exec.sh
+input.dat
+
+__pycache__/
