@@ -42,7 +42,23 @@ class SegmentTree:
             return self.f(lres, rres)
 
 if __name__ == '__main__':
-    data = int(input())
-    data = list(map(int, input().split()))
+
+    # get interval sum
+    st = SegmentTree(6)
+    for i in range(6):
+        st.update(i, i)
+    a = st.query(3, 6)
+    print('a', a) # debug
+
+    # get min
+    f = lambda x, y : min(x, y)
+    st = SegmentTree(6, f, math.inf)
+    for i in range(6):
+        st.update(i, 10 - i)
+    a = st.query(2, 3)
+    print('st.dat') # debug
+    print(st.dat) # debug
+    print('a', a) # debug
+
 
     print('\33[32m' + 'end' + '\033[0m') # debug
