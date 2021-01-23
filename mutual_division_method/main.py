@@ -14,6 +14,7 @@ import bisect
 
 
 def mutual_division_method(a, b):
+    # calc greatest common divisor
     while not (a == 0 or b == 0):
         if a > b:
             a = a % b
@@ -28,7 +29,7 @@ def mutual_division_method(a, b):
 
 
 if __name__ == '__main__':
-    ans = mutual_division_method(32, 6)
+    ans = mutual_division_method(32, 12)
     print('ans') # debug
     print(ans) # debug
 
