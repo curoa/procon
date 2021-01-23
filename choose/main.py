@@ -23,19 +23,17 @@ import math
 def factorial(n, mod=None, memo=False):
     if memo:
         factorial.memo = [1] * (n + 1)
-        print('factorial.memo') # debug
-        print(factorial.memo) # debug
         for i in range(1, n + 1):
-            print('i') # debug
-            print(i) # debug
+            print('i', i) # debug
             if mod is None:
                 factorial.memo[i] = i * factorial.memo[i - 1]
             else:
                 factorial.memo[i] = i * factorial.memo[i - 1] % mod
-            print('factorial.memo[i]') # debug
-            print(factorial.memo[i]) # debug
+            print('factorial.memo[i]', factorial.memo[i]) # debug
+            print() # debug
     return factorial.memo[n]
 
+# if `mod` works in factorial() then choose() fails
 def choose(n, r, mod=None):
     a = factorial(n)
     b = factorial(r)
@@ -56,12 +54,12 @@ if __name__ == '__main__':
     n = 65234
     a = factorial(n, mod, True)
     a = factorial(n, mod)
-    print('a') # debug
-    print(a) # debug
+    print('factorial.memo') # debug
+    print(factorial.memo) # debug
     assert math.factorial(n) % mod == factorial(n), 'hoge'
     for i in range(5 + 1):
-        a = choose(n - 1, i)
+        a = choose(10, i)
         print(a) # debug
 
-
     print('\33[32m' + 'end' + '\033[0m')
+
