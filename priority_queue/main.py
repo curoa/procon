@@ -22,6 +22,11 @@ class PriorityQueue:
     def pop(self):
         return heappop(self.contaier)
 
+    def min(self):
+        if self.is_empty():
+            return None, None
+        return self.contaier[0]
+
     def is_empty(self):
         return len(self.contaier) == 0
 
