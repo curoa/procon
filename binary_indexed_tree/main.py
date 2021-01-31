@@ -16,6 +16,8 @@ import bisect
 class BIT: # binary indexed tree
     """
     http://hos.ac/slides/20140319_bit.pdf
+    区間和ができる
+    # 列に対するある種の処理ができる
     """
 
     def __init__(self, size):

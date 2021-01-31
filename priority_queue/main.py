@@ -10,25 +10,59 @@ import math
 #from sortedcontainers import SortedList, SortedDict, SortedSet # no in atcoder
 import bisect
 
+
+################################
+
+class PrioritizedItem:
+
+    def __init__(self, priority, item):
+        self.priority = priority
+        self.item = item
+
+    def __lt__(a, b):
+        return a.priority < b.priority
+
+    def __repr__(self):
+        return "({}) {}".format(self.priority, self.item)
+
 from heapq import heappush, heappop
 class PriorityQueue:
 
-    def __init__(self):
+    def __init__(self, flg_min):
         self.contaier = []
+        self.flg_min = flg_min # if max then False
 
-    def push(self, priority, value): # smaller is first
-        heappush(self.contaier, (priority, value))
+    def __repr__(self):
+        return pf(self.contaier)
+
+    def push(self, priority, value):
+        if not self.flg_min:
+            priority = -1 * priority
+        heappush(self.contaier, PrioritizedItem(priority, value)) # smaller is first
+        #heappush(self.contaier, (priority, value)) # smaller is first
 
     def pop(self):
         return heappop(self.contaier)
 
     def min(self):
+        if not self.flg_min:
+            raise RuntimeError("min() of PriorityQueue for max called")
+        return self.top()
+
+    def max(self):
+        if self.flg_min:
+            raise RuntimeError("max() of PriorityQueue for min called")
+        return self.top()
+
+    def top(self):
         if self.is_empty():
-            return None, None
-        return self.contaier[0]
+            return None
+        return self.contaier[0].item
 
     def is_empty(self):
         return len(self.contaier) == 0
+
+################################
 
 
 if __name__ == '__main__':

@@ -8,11 +8,17 @@ from pprint import pprint as pp
 from pprint import pformat as pf
 
 
+################################
+
 # id starts from 0
 class UnionFind:
 
     def __init__(self, size):
         self.group = list(range(size))
+        self.count_group = len(self.group)
+
+    def __repr__(self):
+        return pf(self.count_group) + pf(self.group)
 
     def find(self, member):
         if member == self.group[member]:
@@ -27,11 +33,16 @@ class UnionFind:
         gb = self.find(b)
         if ga == gb:
             return
-        self.group[b] = ga
+        self.group[gb] = ga
+        self.count_group -= 1
 
     def same(self, a, b):
         return self.find(a) == self.find(b)
 
+    def same_all(self):
+        return self.count_group == 1
+
+################################
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('This is hogehoge')
