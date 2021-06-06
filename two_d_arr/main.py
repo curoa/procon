@@ -18,6 +18,14 @@ def make_2d_arr(s1, s2, default=0):
         a[i] = [default] * s2
     return a
 
+def make_3d_arr(s1, s2, s3, default=0):
+    a = [None] * s1
+    for i, _ in enumerate(a):
+        a[i] = [None] * s2
+        for j, _ in enumerate(a[i]):
+            a[i][j] = [default] * s3
+    return a
+
 
 if __name__ == '__main__':
     a = make_2d_arr(3, 8, -1)

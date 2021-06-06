@@ -11,27 +11,22 @@ from pprint import pformat as pf
 import math
 #from sortedcontainers import SortedList, SortedDict, SortedSet # no in atcoder
 import bisect
+# Queue is very slow
 
-from decimal import Decimal #TODO use python not pypy
+
+def make_power(base, size, mod):
+    result = [1] * (size + 1)
+    for i in range(1, size + 1):
+        result[i] = result[i-1] * base % mod
+    return result
 
 
 if __name__ == '__main__':
-    #data = int(input())
-    #data = list(map(int, input().split()))
 
-    f = 0.1
-    v = f
-    for _ in range(9):
-        v += f
-    print('v') # debug
-    print(v) # debug
-
-    d = Decimal("0.1")
-    v = d
-    for _ in range(9):
-        v += d
-    print('v') # debug
-    print(v) # debug
-
+    mod = 10**9+7
+    pow11 = make_power(11, 3, mod)
+    print('pow11') # debug
+    pp(pow11) # debug
 
     print('\33[32m' + 'end' + '\033[0m') # debug
+

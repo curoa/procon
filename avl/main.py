@@ -19,6 +19,10 @@ import pysnooper # @pysnooper.snoop()
 from pprint import pprint as pp
 from pprint import pformat as pf
 
+################################
+
+#XXX use python, not pypy. because recursive func used
+
 # ref. http://wwwa.pikara.ne.jp/okojisan/avl-tree/python.html
 
 class Node:
@@ -82,6 +86,9 @@ class AVL:
         self.changed = False
         self.small_max_key = None
         self.small_max_value = None
+
+    def __repr__(self):
+        return to_graph("*", "-", self.root)
 
     def balance_for_insert_small(self, tree):
         return self.balance_small(tree)
@@ -208,6 +215,37 @@ class AVL:
                 return tree.value
         return None
 
+    # return minimal hit, which key >= key
+    # ref. https://cpprefjp.github.io/reference/map/map/lower_bound.html
+    def lower_bound(self, key):
+        tree = self.root
+        minimal = math.inf
+        while not (tree is None):
+            if key < tree.key:
+                minimal = min(minimal, tree.value)
+                tree = tree.small
+            elif key > tree.key:
+                tree = tree.large
+            else:
+                return tree.value
+        return minimal
+
+    # return minimal hit, which key > key
+    # ref. https://cpprefjp.github.io/reference/map/map/upper_bound.html
+    def upper_bound(self, key):
+        tree = self.root
+        minimal = math.inf
+        while not (tree is None):
+            if key < tree.key:
+                minimal = min(minimal, tree.value)
+                tree = tree.small
+            elif key > tree.key:
+                tree = tree.large
+            else:
+                # same as key > tree.large
+                tree = tree.large
+        return minimal
+
     def isEmpty(self):
         return self.root is None
 
@@ -235,18 +273,19 @@ class AVL:
     def valid_binary_search_tree(self):
         return valid_binary_search_tree(self.root)
 
+
 def keys_sub(tree):
     if tree is None:
         return []
     return keys_sub(tree.small) + [tree.key] + keys_sub(tree.large)
 
-def toGraph(head, bar, tree):
+def to_graph(head, bar, tree):
     graph = ""
     if tree is not None:
-        graph += toGraph(head + "  ", "/", tree.small)
+        graph += to_graph(head + "  ", "/", tree.small)
         node = "{}:{}:{}".format(tree.height, tree.key, tree.value)
         graph += head + bar + node + "\n"
-        graph += toGraph(head + "  ", "\\", tree.large)
+        graph += to_graph(head + "  ", "\\", tree.large)
     return graph
 
 def balanced(tree):
@@ -270,6 +309,7 @@ def check_large(key, tree):
         return True
     return tree.key > key and check_large(key, tree.small) and check_large(key, tree.large)
 
+################################
 
 
 

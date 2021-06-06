@@ -10,16 +10,20 @@ import math
 #from sortedcontainers import SortedList, SortedDict, SortedSet # no in atcoder
 import bisect
 
+"""
 class Counter(dict):
     def __missing__(self, key):
         self[key] = 0
         return self[key]
+"""
 
+from collections import defaultdict
+d = defaultdict(int)
 
 if __name__ == '__main__':
 
 
-    d = Counter()
+    #d = Counter()
     d[9] += 1
     print('d') # debug
     print(d) # debug

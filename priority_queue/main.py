@@ -38,8 +38,7 @@ class PriorityQueue:
     def push(self, priority, value):
         if not self.flg_min:
             priority = -1 * priority
-        heappush(self.contaier, PrioritizedItem(priority, value)) # smaller is first
-        #heappush(self.contaier, (priority, value)) # smaller is first
+        heappush(self.contaier, PrioritizedItem(priority, value))
 
     def pop(self):
         return heappop(self.contaier)

@@ -13,8 +13,13 @@ import math
 import bisect
 
 def list_safe_get(l, index, default=None):
-    if 0 < index < len(l):
+    if 0 <= index < len(l):
         return l[index]
+    return default
+
+def list_safe_get(l, i, j, default=None):
+    if 0 <= i < len(l) and 0 <= j < len(l[i]):
+        return l[i][j]
     return default
 
 if __name__ == '__main__':

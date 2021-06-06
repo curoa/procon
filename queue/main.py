@@ -27,7 +27,7 @@ class Queue:
         else:
             self.sub.append(value)
 
-    def get(self):
+    def pop(self):
         value = self.data[self.pos]
         self.pos += 1
         if self.pos >= len(self.data):
@@ -37,7 +37,7 @@ class Queue:
             self.pos = 0
         return value
 
-    def empty(self):
+    def is_empty(self):
         if len(self.data) == 0 and len(self.sub) == 0:
             return True
         return False

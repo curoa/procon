@@ -44,6 +44,7 @@ def matrix_inner_product(x, y):
     return z
 
 # angle: 0-360
+# counter clockwise
 def get_rotate_matrix(angle):
     x = make_2d_arr(3, 3)
     x[0][0] = math.cos(math.radians(angle))

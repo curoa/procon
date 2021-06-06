@@ -40,12 +40,12 @@ class HamiltonPath:
             self.dp[BitArray(0).set(i, True).data][i] = 0
 
     def solve(self):
-        print('graph') # debug
-        print(graph) # debug
+        print('self.graph') # debug
+        print(self.graph) # debug
         for s in range(BitArray.set_size):
             ba = BitArray(s)
             for frm in ba.my_iter(True):
-                for to, w in graph.edges[frm].items():
+                for to, w in self.graph.edges[frm].items():
                     if ba.check(to) is True:
                         continue
                     new_ba_data = ba.get_set_data(to, True)

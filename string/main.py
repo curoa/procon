@@ -11,27 +11,24 @@ from pprint import pformat as pf
 import math
 #from sortedcontainers import SortedList, SortedDict, SortedSet # no in atcoder
 import bisect
+# Queue is very slow
 
-from decimal import Decimal #TODO use python not pypy
+def convert(key):
+    magic = 26 # number of alphabet
+    return chr(ord("a") + (key % magic) - 1)
+
+def str_reverse(s):
+    return "".join(list(reversed(s)))
 
 
 if __name__ == '__main__':
     #data = int(input())
     #data = list(map(int, input().split()))
 
-    f = 0.1
-    v = f
-    for _ in range(9):
-        v += f
-    print('v') # debug
-    print(v) # debug
-
-    d = Decimal("0.1")
-    v = d
-    for _ in range(9):
-        v += d
-    print('v') # debug
-    print(v) # debug
-
+    print('convert(3)') # debug
+    print(convert(3)) # debug
+    print('str_reverse("abc")') # debug
+    print(str_reverse("abc")) # debug
 
     print('\33[32m' + 'end' + '\033[0m') # debug
+

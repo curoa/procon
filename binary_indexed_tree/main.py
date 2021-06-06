@@ -15,7 +15,7 @@ import bisect
 
 class BIT: # binary indexed tree
     """
-    http://hos.ac/slides/20140319_bit.pdf
+    ref. http://hos.ac/slides/20140319_bit.pdf
     区間和ができる
     # 列に対するある種の処理ができる
     """
@@ -32,7 +32,9 @@ class BIT: # binary indexed tree
             # for next
             k += k & -k
 
-    def sum(self, pos):
+    def sum(self, pos=None):
+        if pos is None:
+            pos = self.size
         assert(pos > 0)
         s = 0
         k = pos
@@ -47,7 +49,7 @@ if __name__ == '__main__':
     #data = int(input())
     #data = list(map(int, input().split()))
     bit = BIT(8)
-    for i in range(8):
+    for i in range(1, 8):
         bit.add(i, i)
         a = bit.sum(i)
         print('a') # debug

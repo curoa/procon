@@ -14,27 +14,38 @@ from pprint import pformat as pf
 class UnionFind:
 
     def __init__(self, size):
+        self.size = size
         self.group = list(range(size))
         self.count_group = len(self.group)
+        self.cluster_size = [1] * size
 
     def __repr__(self):
-        return pf(self.count_group) + pf(self.group)
+        return pf(self.count_group) + pf(self.group) + pf(self.cluster_size)
 
     def find(self, member):
-        if member == self.group[member]:
-            return member
-        else:
-            g = self.find(self.group[member])
-            self.group[member] = g
-            return g
+        passed = []
+        while not member == self.group[member]:
+            passed.append(member)
+            member = self.group[member]
+        for p in passed:
+            self.group[p] = member
+        return member
+
+    def get_cluster_size(self, member):
+        g = self.find(member)
+        return self.cluster_size[g]
 
     def union(self, a, b):
+        if not a < b:
+            a, b = b, a
         ga = self.find(a)
         gb = self.find(b)
         if ga == gb:
             return
         self.group[gb] = ga
         self.count_group -= 1
+        self.cluster_size[ga] += self.cluster_size[gb]
+        self.cluster_size[gb] = 0
 
     def same(self, a, b):
         return self.find(a) == self.find(b)

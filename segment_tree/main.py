@@ -24,11 +24,14 @@ class SegmentTree:
 
     def update(self, i, x):
         i += self.size-1
+        if self.dat[i] == x:
+            return
         self.dat[i] = x
         while i > 0:
             i = (i-1) >> 1
             self.dat[i] = self.f(self.dat[i*2+1], self.dat[i*2+2])
 
+    # [l, r) : l <= x < r, include l, but not r
     def query(self, l, r, k=0, L=0, R=None):
         if R is None:
             R = self.size
