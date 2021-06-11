@@ -11,6 +11,7 @@ from pprint import pformat as pf
 import math
 #from sortedcontainers import SortedList, SortedDict, SortedSet # no in atcoder
 import bisect
+from collections import defaultdict
 
 # O(n log log n)
 def enumerate_primes(upto):
@@ -35,15 +36,31 @@ def to_prime_list(is_prime):
             primes.append(v)
     return primes
 
+#TODO select which prime_factorize
+# O( sqrt n )
+# primes: returned value of to_prime_list
+def prime_factorize(n, primes):
+    #print("prime_factorize n", n) # debug
+    factors = defaultdict(lambda: 0)
+    for p in primes:
+        while n % p == 0:
+            n = n // p
+            factors[p] += 1
+        if n == 1:
+            break
+    return factors
+
+#TODO select which prime_factorize
 # ref. https://algo-logic.info/prime-fact/
 # O(log n)
-# primes: returned value of enumerate_primes
-def prime_factorize(n, primes):
+# is_prime: returned value of enumerate_primes
+# suit for call this many times
+def prime_factorize(n, is_prime):
     #print("prime_factorize n", n) # debug
     factors = defaultdict(lambda: 0)
     while not n == 1:
         #print("n", n) # debug
-        d = primes[n]
+        d = is_prime[n]
         if d is True:
             d = n
         n = n // d
@@ -58,7 +75,8 @@ if __name__ == '__main__':
 
     is_prime = enumerate_primes(100)
     primes = to_prime_list(is_prime)
-    factors = prime_factorize(120, is_prime)
+    factors = prime_factorize(120, primes)
+    #factors = prime_factorize(120, is_prime)
     print('factors') # debug
     pp(factors) # debug
 
