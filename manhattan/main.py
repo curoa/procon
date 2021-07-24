@@ -23,6 +23,7 @@ def left_projection(x, y):
 def manhattan1(p1, p2):
     return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
 
+# 45 degree rotation
 def manhattan2(p1, p2):
     right_diff = abs(right_projection(p1[0], p1[1]) - right_projection(p2[0], p2[1]))
     left_diff = abs(left_projection(p1[0], p1[1]) - left_projection(p2[0], p2[1]))

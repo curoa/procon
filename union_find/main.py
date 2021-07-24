@@ -47,10 +47,10 @@ class UnionFind:
         self.cluster_size[ga] += self.cluster_size[gb]
         self.cluster_size[gb] = 0
 
-    def same(self, a, b):
+    def is_same(self, a, b):
         return self.find(a) == self.find(b)
 
-    def same_all(self):
+    def is_same_all(self):
         return self.count_group == 1
 
 ################################

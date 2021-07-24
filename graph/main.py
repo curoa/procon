@@ -82,6 +82,8 @@ class AdjacentMatrix:
     def __init__(self, size):
         self.size = size
         self.matrix = make_2d_arr(size, size, math.inf)
+        for i in range(self.size):
+            self.matrix[i][i] = 0
 
     def __repr__(self):
         return pf(self.matrix)
@@ -90,16 +92,14 @@ class AdjacentMatrix:
         #self.matrix[frm][to] = cost
         self.update(frm, to, cost) # for multi edge
 
-    def spread(self):
-        for f in range(self.size):
-            for t in range(self.size):
-                self.transition(f, t)
-
-    def transition(self, frm, to):
-        cost = self.matrix[frm][to]
-        for target in range(self.size):
-            candidate_cost = self.matrix[target][frm] + cost
-            self.update(target, to, candidate_cost)
+    # ref. https://qiita.com/okaryo/items/8e6cd73f8a676b7a5d75
+    # O(size^3)
+    def warshall_floyd(self):
+        for k in range(self.size): # via
+            for f in range(self.size):
+                for t in range(self.size):
+                    cost = self.matrix[f][k] + self.matrix[k][t]
+                    self.update(f, t, cost)
 
     def update(self, frm, to, cost):
         self.matrix[frm][to] = min(self.matrix[frm][to], cost)

@@ -48,6 +48,8 @@ def prime_factorize(n, primes):
             factors[p] += 1
         if n == 1:
             break
+    if n != 1:
+        factors[n] += 1
     return factors
 
 #TODO select which prime_factorize
