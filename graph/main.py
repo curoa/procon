@@ -17,14 +17,14 @@ class Graph:
     def __init__(self, size):
         # id starts from 0
         self.size = size
-        self.vertices = [0] * size
+        #self.vertices = [0] * size
         self.edges = [None] * size
         for i in range(size):
             self.edges[i] = []
 
     def __repr__(self):
         out = []
-        out.append("vertices {}".format(self.vertices))
+        #out.append("vertices {}".format(self.vertices))
         for i, e in enumerate(self.edges):
             out.append("{}{}".format(i, pf(e)))
         return "\n".join(out)
@@ -38,14 +38,14 @@ class WeightedGraph:
     def __init__(self, size):
         # id starts from 0
         self.size = size
-        self.vertices = [0] * size
+        #self.vertices = [0] * size
         self.edges = [None] * size
         for i in range(size):
             self.edges[i] = {}
 
     def __repr__(self):
         out = []
-        out.append("vertices {}".format(self.vertices))
+        #out.append("vertices {}".format(self.vertices))
         for i, e in enumerate(self.edges):
             out.append("{}{}".format(i, pf(e)))
         return "\n".join(out)
@@ -61,14 +61,14 @@ class WeightedDirectedMultiEdgeGraph:
     def __init__(self, size):
         # id starts from 0
         self.size = size
-        self.vertices = [0] * size
+        #self.vertices = [0] * size
         self.edges = [None] * size
         for i in range(size):
             self.edges[i] = defaultdict(list)
 
     def __repr__(self):
         out = []
-        out.append("vertices {}".format(self.vertices))
+        #out.append("vertices {}".format(self.vertices))
         for i, e in enumerate(self.edges):
             out.append("{} {}".format(i, pf(e)))
         return "\n".join(out)
@@ -76,6 +76,7 @@ class WeightedDirectedMultiEdgeGraph:
 
     def add_edge(self, frm, to, weight):
         self.edges[frm][to].append(weight)
+        #self.edges[to][frm].append(weight)
 
 class AdjacentMatrix:
 

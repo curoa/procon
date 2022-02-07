@@ -33,7 +33,8 @@ class PriorityQueue:
         self.flg_min = flg_min # if max then False
 
     def __repr__(self):
-        return pf(self.contaier)
+        #return pf(self.contaier)
+        return pf(sorted(self.contaier))
 
     def push(self, priority, value):
         if not self.flg_min:
@@ -41,7 +42,12 @@ class PriorityQueue:
         heappush(self.contaier, PrioritizedItem(priority, value))
 
     def pop(self):
-        return heappop(self.contaier)
+        pi = heappop(self.contaier)
+        if self.flg_min:
+            return pi.priority, pi.item
+        else:
+            return -1 * pi.priority, pi.item
+
 
     def min(self):
         if not self.flg_min:

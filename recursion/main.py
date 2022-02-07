@@ -20,7 +20,10 @@ import bisect
 # Queue is very slow
 from collections import defaultdict
 
+#XXX Honestly, I don't recommend this. try python and speed tuning
+#XXX if you do any task after stack.add(), maybe it breaks code
 # global stack
+# please stack.append() in recursive function. not call recursion()
 def recursion(f):
     while not len(stack) == 0:
         args = stack.pop()

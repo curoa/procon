@@ -105,6 +105,7 @@ class BitArray:
         data = BitArray.get_set_data(data, i, flg)
         return data
 
+    #XXX NOT USE THIS. you should read 6 of https://jetbead.hatenablog.com/entry/20121202/1354406422
     #XXX yield is very slow
     #XXX storing in list is very very slow
     @staticmethod
@@ -129,6 +130,18 @@ class BitArray:
             visited, visited_new = visited_new, visited
             visited_new.clear()
             #print("visited", visited) # debug
+
+    #XXX yield is very slow
+    #XXX storing in list is very very slow
+    @staticmethod
+    def yield_subset(data):
+        r = data
+        while True:
+            if r == 0:
+                break
+            print("r", r, bin(r)) # debug
+            yield r
+            r = (r - 1) & data
 
 
 ################################

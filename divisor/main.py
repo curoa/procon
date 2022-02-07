@@ -25,6 +25,8 @@ def yield_divisors(n):
             yield a // i
 """
 
+# O(sqrt(n))
+# return: increasing order and not duplicated
 def make_divisors(n):
     lower_divisors , upper_divisors = [], []
     i = 1

@@ -57,6 +57,9 @@ def _inv_gcd(a, b):
 # ref. https://qiita.com/drken/items/ae02240cd1f8edfc86fd
 # ref. https://atcoder.jp/contests/abc193/submissions/20516429
 # chinese remainder theorem
+# return: r, m
+#   r: r === r[i] mod m[i]
+#   m: 0 if there is not answer
 def crt(r, m):
     assert len(r) == len(m)
 

@@ -19,12 +19,14 @@ import bisect
 # n: number of items
 def arithmetic_progression_sum_1(first, last, n):
     return n * (first + last) / 2 # return float
+    return n * (first + last) // 2 # return int
 
 # a: first number
 # d: diff
 # n: number of items
 def arithmetic_progression_sum_2(a, d, n):
     return n / 2 * (2 * a + (n - 1) * d) # return float
+    return n * (2 * a + (n - 1) * d) // 2 # return int
 
 
 if __name__ == '__main__':

@@ -43,6 +43,13 @@ def matrix_inner_product(x, y):
             z[i][j] = v
     return z
 
+# mat: 2x2 matrix 
+def move_point(mat, xy):
+    new_x = mat[0][0] * xy[0] + mat[0][1] * xy[1]
+    new_y = mat[1][0] * xy[0] + mat[1][1] * xy[1]
+    return new_x, new_y
+
+
 # angle: 0-360
 # counter clockwise
 def get_rotate_matrix(angle):
@@ -53,6 +60,9 @@ def get_rotate_matrix(angle):
     x[1][1] = math.cos(math.radians(angle))
     x[2][2] = 1
     return x
+
+op_clock_rev = [[0, -1], [1, 0]] # angle 90
+op_clock = [[0, 1], [-1, 0]] # angle -90
 
 def get_slide_matrix(x, y):
     z = get_base_matrix()

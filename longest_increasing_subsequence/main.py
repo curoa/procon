@@ -10,6 +10,7 @@ import bisect
 
 
 
+# O(n log n)
 def solve(seq):
     dp = [math.inf] * (len(seq) + 1)
     dp[0] = -1 * math.inf

@@ -52,12 +52,12 @@ class Magician:
         return self.fac[n] * self.finv[k] % self.mod * self.finv[n-k] % self.mod
 
     def permuate(self, n, k=None):
+        if k is None:
+            return self.fac[n]
         if n < k:
             return 0
         if n < 0 or k < 0:
             return 0
-        if k is None:
-            return self.fac[n]
         return self.fac[n] * self.finv[n-k] % self.mod
 
     def multi_choose(self, n, k):
@@ -93,6 +93,35 @@ class Dealer:
 
     def multi_choose(self, n, k):
         return self.choose(n + k - 1, k)
+
+################################
+
+class OnlyChoose:
+
+    def __init__(self, size):
+        def make_2d_arr(s1, s2, default=0):
+            a = [None] * s1
+            for i, _ in enumerate(a):
+                a[i] = [default] * s2
+            return a
+        #
+        size += 1
+        ch = make_2d_arr(size, size, 0)
+        ch[0][0] = 1
+        for n in range(size):
+            for r in range(size):
+                if n > 0:
+                    ch[n][r] += ch[n-1][r]
+                if r > 0:
+                    ch[n][r] += ch[n][r-1]
+        self.ch = ch
+
+    def __call__(self, n, r):
+        return self.ch[n][r]
+
+choose = OnlyChoose(size)
+#choose(n, r)
+
 
 ################################
 

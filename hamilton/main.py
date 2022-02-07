@@ -30,30 +30,33 @@ from procon.bit_array.main import BitArray
 from procon.two_d_arr.main import make_2d_arr
 
 
-class HamiltonPath:
+class HamiltonPath: # not cycle
 
     def __init__(self, graph):
         self.graph = graph
         BitArray.set_size(graph.size)
-        self.dp = make_2d_arr(BitArray.set_size, BitArray.size, math.inf)
+        self.dp = make_2d_arr(BitArray.size_as_set, BitArray.size, math.inf)
         for i in range(BitArray.size): # `i` is start vertex
-            self.dp[BitArray(0).set(i, True).data][i] = 0
+            self.dp[BitArray.set(0, i, True)][i] = 0
 
     def solve(self):
-        print('self.graph') # debug
-        print(self.graph) # debug
-        for s in range(BitArray.set_size):
-            ba = BitArray(s)
-            for frm in ba.my_iter(True):
+        #print('self.graph') # debug
+        #print(self.graph) # debug
+        for s in range(BitArray.size_as_set): # this is ok
+        #for s in BitArray.yield_lattice():
+            if s == 0:
+                continue
+            #print("s", s, BitArray.repr(s)) # debug
+            for frm in BitArray.iter_flg(s, True):
                 for to, w in self.graph.edges[frm].items():
-                    if ba.check(to) is True:
+                    if BitArray.check(s, to) is True:
                         continue
-                    new_ba_data = ba.get_set_data(to, True)
-                    new_score = self.dp[ba.data][frm] + w
+                    new_ba_data = BitArray.get_set_data(s, to, True)
+                    new_score = self.dp[s][frm] + w
                     if new_score < self.dp[new_ba_data][to]:
                         self.dp[new_ba_data][to] = new_score
-        print('self.dp') # debug
-        pp(self.dp) # debug
+        #print('self.dp') # debug
+        #pp(self.dp) # debug
         return min(self.dp[-1])
 
 

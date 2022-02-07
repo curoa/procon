@@ -37,7 +37,8 @@ def modinv(a, m):
         return x % m
 
 def lcm(a, b): # least common multiple
-    return a * b // gcd(a, b)
+    #return a * b // gcd(a, b)
+    return a // gcd(a, b) * b  # avoid overflow
 
 def all_lcm(l):
     hand = 1

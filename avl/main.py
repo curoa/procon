@@ -21,7 +21,7 @@ from pprint import pformat as pf
 
 ################################
 
-#XXX use python, not pypy. because recursive func used
+#XXX use python, not pypy. because recursive func used #XXX maybe this is false
 
 # ref. http://wwwa.pikara.ne.jp/okojisan/avl-tree/python.html
 
@@ -246,6 +246,38 @@ class AVL:
                 tree = tree.large
         return minimal
 
+    # return maximal hit, which key <= key
+    # [1, 2, 3].lower_bound_left(2) -> 2
+    # [1, 3].lower_bound_left(2) -> 1
+    def lower_bound_left(self, key):
+        tree = self.root
+        maximal =  -1 * math.inf
+        while not (tree is None):
+            if key < tree.key:
+                tree = tree.small
+            elif key > tree.key:
+                maximal = max(maximal, tree.value)
+                tree = tree.large
+            else:
+                return tree.value
+        return maximal
+
+    def get_min(self):
+        if self.isEmpty():
+            return None
+        node = self.root
+        while not node.small is None:
+            node = node.small
+        return node.key, node.value
+
+    def get_max(self):
+        if self.isEmpty():
+            return None
+        node = self.root
+        while not node.large is None:
+            node = node.large
+        return node.key, node.value
+
     def isEmpty(self):
         return self.root is None
 
@@ -265,7 +297,7 @@ class AVL:
     """
 
     def __str__(self):
-        return toGraph("", "", self.root).rstrip()
+        return to_graph("", "", self.root).rstrip()
 
     def balanced(self):
         return balanced(self.root)

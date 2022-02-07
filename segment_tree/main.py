@@ -12,6 +12,8 @@ import math
 #from sortedcontainers import SortedList, SortedDict, SortedSet # no in atcoder
 import bisect
 
+# if you need lazy, which can range add or update, please see lazy.py 
+
 class SegmentTree:
     # 初期化処理
     # f : SegmentTreeにのせるモノイド

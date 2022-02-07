@@ -15,7 +15,9 @@ import bisect
 
 from procon.binary_indexed_tree.main import BIT
 
+# O(n log n)
 # ref. https://scrapbox.io/pocala-kyopro/%E8%BB%A2%E5%80%92%E6%95%B0
+# number of swap to reorder
 class NumberOfInversion:
 
     def __init__(self, data):

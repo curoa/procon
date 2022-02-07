@@ -59,7 +59,7 @@ def prime_factorize(n, primes):
 # suit for call this many times
 def prime_factorize(n, is_prime):
     #print("prime_factorize n", n) # debug
-    factors = defaultdict(lambda: 0)
+    factors = defaultdict(int)
     while not n == 1:
         #print("n", n) # debug
         d = is_prime[n]
@@ -70,6 +70,25 @@ def prime_factorize(n, is_prime):
     #print('factors') # debug
     #print(factors) # debug
     return factors
+
+
+#TODO select which prime_factorize
+# O(sqrt(n))
+def prime_factorize(n):
+    factors = defaultdict(int)
+    p = 2
+    while p**2 <= n:
+        #print("n, p", n, p) # debug
+        if n % p != 0:
+            p += 1
+            continue
+        while n % p == 0:
+            factors[p] += 1
+            n = n // p
+    if n != 1:
+        factors[n] += 1
+    return factors
+
 
 if __name__ == '__main__':
     #data = int(input())
