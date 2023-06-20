@@ -27,6 +27,9 @@ class ModInt(int):
         return self
 
 
+# mod equal condition by multi step
+# ref. https://atcoder.jp/contests/abc210/editorial/2299
+
 if __name__ == '__main__':
     #data = int(input())
     #data = list(map(int, input().split()))
